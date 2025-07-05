@@ -1,21 +1,70 @@
-/* Global reset & box sizing */
+:root {
+  --nasa-primary: #105bd8;
+  --nasa-primary-alt: #02bfe7;
+  --nasa-primary-alt-dark: #00a6d2;
+  --nasa-primary-darker: #0b3d91;
+  --nasa-primary-darkest: #061f4a;
+  --nasa-primary-alt-darkest: #046b99;
+  --nasa-primary-alt-light: #9bdaf1;
+  --nasa-primary-alt-lightest: #e1f3f8;
+  --nasa-secondary: #dd361c;
+  --nasa-secondary-darkest: #99231b;
+  --nasa-secondary-dark: #c62d1f;
+  --nasa-secondary-light: #e59892;
+  --nasa-secondary-lightest: #f9e0de;
+  --nasa-base: #212121;
+  --nasa-grey-warm-dark: #494440;
+  --nasa-grey-dark: #323a45;
+  --nasa-grey: #5b616b;
+  --nasa-grey-light: #aeb0b5;
+  --nasa-grey-warm-light: #e4e2e0;
+  --nasa-grey-lighter: #d6d7d9;
+  --nasa-grey-lightest: #f1f1f1;
+  --nasa-white: #ffffff;
+
+  --nasa-gold: #ff9d1e;
+  --nasa-gold-light: #f9aa43;
+  --nasa-gold-lighter: #ffc375;
+  --nasa-gold-lightest: #ffebd1;
+
+  --nasa-green: #2e8540;
+  --nasa-green-light: #4aa564;
+  --nasa-green-lighter: #94bfa2;
+  --nasa-green-lightest: #e7f4e4;
+
+  --nasa-cool-blue: #205493;
+  --nasa-cool-blue-light: #4773aa;
+  --nasa-cool-blue-lighter: #8ba6ca;
+  --nasa-cool-blue-lightest: #dce4ef;
+
+  /* Special state color */
+  --nasa-focus: #aeb0b5;
+  --nasa-visited: #4c2c92;
+
+}
+
+/* Global reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Base page styles */
+/* Global Styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  font-family: Inter, sans-serif;
+  background-color: var(--nasa-base) !important;
+  color: var(--nasa-white);
   padding: 20px;
 }
 
-/* Centered container */
+/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  background-color: var(--nasa-primary-darkest);
+  border-radius: 8px;
+  padding: 15px;
 }
 
 /* Header */
@@ -23,122 +72,214 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--nasa-primary);
+  color: var(--nasa-white);
+  border-radius: 8px;
 }
 
 h1 {
   font-family: Verdana, sans-serif;
   font-weight: bold;
-  color: #212121;
+  font-size: 1.8rem;
+  color: var(--nasa-white);
+  margin-left: 10px;
 }
 
-/* Logo */
 .logo {
   width: 140px;
   margin-right: 15px;
 }
 
-/* Date‐picker & button row */
+/* Filters Section */
 .filters {
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
-  margin-bottom: 20px;
-  padding: 0 20px;
+  margin: 20px 0;
+  padding: 10px;
 }
 
-/* Inputs and buttons */
+.filters input[type="date"],
 input[type="date"],
+.filters button,
 button {
   font-family: Arial, sans-serif;
-  font-weight: normal;
-  color: #666;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
   font-size: 16px;
-  line-height: 1.4;
-  width: 100%;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: normal;
 }
 
-/* Button specific */
+.filters input[type="date"] {
+  background-color: var(--nasa-grey-light);
+  color: var(--nasa-base);
+  border: none;
+}
+
+.filters button,
 button {
-  background-color: #d3d3d3;
-  color: black;
+  color: var(--nasa-base);
   cursor: pointer;
 }
-button:hover {
-  background-color: #bfbfbf;
+
+.filters button {
+  background-color: var(--nasa-gold);
+  font-weight: bold;
 }
 
-/* Stack horizontally on wider screens */
+.filters button:hover,
+button:hover {
+  background-color: var(--nasa-green);
+  color: var(--nasa-white);
+}
+
 @media (min-width: 600px) {
   .filters {
     flex-direction: row;
     padding: 0;
   }
-  
-  input[type="date"],
-  button {
+
+  .filters input[type="date"],
+  .filters button {
     width: auto;
   }
 }
 
-/* Gallery flex container */
+/* Gallery Section */
 .gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px;
   justify-content: center;
-}
-
-/* Gallery items */
-.gallery-item {
-  flex: 1 1 100%;  /* full width by default */
-  min-width: 280px;
-  max-width: 500px;
-  background: white;
-  padding: 10px;
+  background-color: var(--nasa-primary-darkest);
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.gallery-item,
+.card {
+  background: var(--nasa-secondary) !important;
+  color: var(--nasa-white) !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  cursor: pointer;
 }
 
-/* Three columns on wider screens */
-@media (min-width: 1000px) {
-  .gallery-item {
-    flex: 0 1 31%;
-  }
+.gallery-item {
+  margin-top: 10px;
+  padding: 5px;
 }
 
-.gallery-item img {
+.gallery-item img,
+.card img {
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
   border-radius: 4px;
 }
 
-.gallery-item p {
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 14px;
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 15px 0;
 }
 
-/* Placeholder content */
-.placeholder {
-  flex: 1 1 100%;
-  text-align: center;
-  padding: 40px;
-  color: #666;
+.card-subtitle {
+  font-size: 0.9rem;
+  color: var(--nasa-grey-lighter);
 }
 
-.placeholder-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
+/* Loader Styles */
+#loading-container {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--nasa-white);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.spinner-grow {
+  height: 7rem;
+  width: 7rem;
+  background-color: var(--nasa-gold);
+}
+
+.card .img-fluid {
+  height: 300px;
+  object-fit: cover;
+}
+
+.img-fluid {height: 900px; object-fit: cover;}
+
+.modal-dialog {
+  max-width: 70vw !important; /* Increase modal width to accommodate larger images */
+  width: auto; /* Allow auto width for responsive scaling */
+}
+
+.modal-content {
+  background-color: var(--nasa-primary-darker) !important; /* Align with theme colors */
+  border-radius: 8px;
+  color: var(--nasa-white) !important; /* Text color consistent with theme */
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--nasa-primary-darkest) !important; /* Add subtle border for separation */
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--nasa-white);
+}
+
+.modal-body img {
+  width: 100%; /* Make image responsive to the modal's width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px; /* Add slight rounding for consistency */
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--nasa-primary-darkest) !important; /* Add boundary styling */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-footer .btn {
+  background-color: var(--nasa-secondary); /* Button consistent with secondary theme */
+  color: var(--nasa-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.modal-footer .btn:hover {
+  background-color: var(--nasa-green); /* Highlight effect for hover */
+  color: var(--nasa-white);
+}
+
+#random-space-fact-container{
+  background: var(--nasa-grey-warm-dark);
+  color: var(--nasa-white);
+  margin: 3rem;
+  padding: 1rem;
+}
+.gallery-item .img-fluid,
+.card .img-fluid {
+  transition: transform 0.3s ease-in-out; /* Smooth scaling transition */
+}
+
+.gallery-item:hover .img-fluid,
+.card:hover .img-fluid {
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+}
+
